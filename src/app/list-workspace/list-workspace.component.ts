@@ -37,7 +37,19 @@ export class ListWorkspaceComponent {
 
     this.workspace.forEach((currentValue, index) =>{
       currentValue.templateBlock.path = "/"+index;
+      this.updatePath("/"+index, currentValue);
     });
+  }
+
+  updatePath(path: string, item: NestableListItem) {
+    if(item.children) {
+      item.children.forEach((child, index) =>{
+        let currentPath =  path + "/children/" + index;
+        child.templateBlock.path = currentPath;
+        
+        this.updatePath(currentPath, child);
+      });
+    }
   }
 
   dataChanged(block: NestableListItem) {

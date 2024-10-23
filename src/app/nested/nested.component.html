@@ -18,9 +18,12 @@
         <div *ngIf="item.handle" class="drag-handle me-2 text-muted">
           <mat-icon dndHandle mat-list-icon>drag_handle </mat-icon>
         </div>
+        <mat-card-actions>
+          <mat-icon mat-button (click)="onClick(item)">build</mat-icon>
+        </mat-card-actions>
 
         {{ item.content }}
-        <mat-icon (click)="onClick(item)">build</mat-icon>
+
       </mat-card-header>
 
       <mat-card-content class="d-flex align-items-start gap-2 flex-column p-2">

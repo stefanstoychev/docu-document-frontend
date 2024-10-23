@@ -17,25 +17,6 @@
         "addable": true,
         "removable": true
       }
-    },
-    {
-      "type": "Group",
-      "label": "Column Details",
-      "elements": [
-        {
-          "type": "Control",
-          "scope": "#/properties/columns/items/properties/name",
-          "label": "Column Name"
-        },
-        {
-          "type": "Control",
-          "scope": "#/properties/columns/items/properties/type",
-          "label": "Data Type",
-          "options": {
-            "enum": ["string", "integer", "boolean", "date", "float"]
-          }
-        }
-      ]
     }
   ]
 }

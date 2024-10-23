@@ -1,8 +1,11 @@
-<p>{{ item.templateBlock.path }}</p>
-<jsonforms
-    [data]="item.templateBlock.data"
-    [schema]="item.templateBlock.schema"
-    [uischema]="item.templateBlock.uischema"
-    [renderers]="renderers"
-    (dataChange)="dataChange($event)"
-></jsonforms>
+<mat-card appearance="outlined">
+    <mat-card-title>{{ item.templateBlock.path }}</mat-card-title>
+    <mat-card-content>
+        <jsonforms
+            [data]="item.templateBlock.data"
+            [schema]="item.templateBlock.schema"
+            [uischema]="item.templateBlock.uischema"
+            [renderers]="renderers"
+            (dataChange)="dataChange($event)"
+        ></jsonforms></mat-card-content>
+  </mat-card>

@@ -1,6 +1,12 @@
 {
   "type": "object",
   "properties": {
+    "type": {
+      "type": "string",
+      "title": "Type",
+      "minLength": 1,
+      "readOnly": true
+    },
     "title": {
       "type": "string",
       "title": "Title",

@@ -3,6 +3,11 @@
   "elements": [
     {
       "type": "Control",
+      "scope": "#/properties/type",
+      "label": "Type"
+    },
+    {
+      "type": "Control",
       "scope": "#/properties/title",
       "label": "Title",
       "options": {
