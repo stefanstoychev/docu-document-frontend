@@ -13,7 +13,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ListWorkspaceComponent } from './list-workspace/list-workspace.component';
 import { MaterialModule } from './material.module';
 import NestedComponent from "./nested/nested.component";
-import { ProjectService } from './project.service';
+import { ProjectService } from './services/project.service';
 import { ProjectsComponent } from './projects/projects.component';
 
 @NgModule({
