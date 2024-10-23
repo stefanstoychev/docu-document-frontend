@@ -5,7 +5,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { NestableListItem } from '../nested/nested.component';
 import * as jsonpatch from 'fast-json-patch';
 import { applyOperation, Operation } from 'fast-json-patch';
-import { PalletService } from '../pallet.service';
+import { PalletService } from '../services/pallet.service';
 
 
 @Component({
