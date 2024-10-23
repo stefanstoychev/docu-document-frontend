@@ -1,14 +1,15 @@
 <div style="width: 100%; height: 100%;">
     <as-split direction="horizontal">
       <as-split-area [size]="30">
-        <!-- <app-list-palette/> -->
-        <dnd-nested></dnd-nested>
+        <dnd-nested [nestableList]="pallet"></dnd-nested>
       </as-split-area>
       <as-split-area [size]="40">
-        <dnd-nested></dnd-nested>
+        <dnd-nested [nestableList]="workspace" (nodeFocused)="nodeFocused($event)" (treeChanged)="treeChanged()"></dnd-nested>
       </as-split-area>
       <as-split-area [size]="30">
-        <app-form-example></app-form-example>
+        <div *ngIf="item">
+          <app-form-example [item]="item" (dataChanged)="dataChanged($event)" ></app-form-example>
+        </div>
       </as-split-area>
     </as-split>
   </div>

@@ -1,7 +1,8 @@
-<p>form-example works!</p>
+<p>{{ item.templateBlock.path }}</p>
 <jsonforms
-    [data]="data"
-    [schema]="schema"
-    [uischema]="uischema"
+    [data]="item.templateBlock.data"
+    [schema]="item.templateBlock.schema"
+    [uischema]="item.templateBlock.uischema"
     [renderers]="renderers"
+    (dataChange)="dataChange($event)"
 ></jsonforms>

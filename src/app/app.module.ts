@@ -9,18 +9,19 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AppRoutingModule } from './app-routing.module';
 import { FormExampleComponent } from './form-example/form-example.component';
 import { AngularSplitModule } from 'angular-split';
-import { ListPaletteComponent } from "./list-palette/list-palette.component";
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ListWorkspaceComponent } from './list-workspace/list-workspace.component';
 import { MaterialModule } from './material.module';
 import NestedComponent from "./nested/nested.component";
+import { ProjectService } from './project.service';
+import { ProjectsComponent } from './projects/projects.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormExampleComponent,
-    ListPaletteComponent,
-    ListWorkspaceComponent
+    ListWorkspaceComponent,
+    ProjectsComponent
   ],
   imports: [
     AngularSplitModule,

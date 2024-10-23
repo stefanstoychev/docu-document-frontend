@@ -1,5 +1,5 @@
 import { NgForOf, NgIf, NgTemplateOutlet } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -12,10 +12,13 @@ import {
   DndPlaceholderRefDirective,
   DropEffect,
 } from 'ngx-drag-drop';
+import { TemplateBlock } from '../models/template-block';
 
-interface NestableListItem {
+export interface NestableListItem {
   content: string;
+  templateBlock: TemplateBlock,
   disable?: boolean;
+  action: string;
   handle?: boolean;
   customDragImage?: boolean;
   children?: NestableListItem[];
@@ -40,48 +43,21 @@ interface NestableListItem {
   ],
 })
 export default class NestedComponent {
-  nestableList: NestableListItem[] = [
-    {
-      content: 'Got something nested',
-      children: [
-        {
-          content: 'Nested',
-          customDragImage: true,
-          children: [],
-        },
-      ],
-    },
-    {
-      content: 'No nested dropping here',
-    },
-    {
-      content: 'Got more than one',
-      children: [
-        {
-          content: 'Nested 1',
-          handle: true,
-          children: [],
-        },
-        {
-          content: 'Nested 2',
-          children: [],
-        },
-        {
-          content: 'Nested 3',
-          children: [],
-        },
-      ],
-    },
-    {
-      content: "Drop something, I'll catch!",
-      children: [],
-    },
-  ];
+  
+  @Output() nodeFocused = new EventEmitter<NestableListItem>();
+  @Output() treeChanged = new EventEmitter<void>();
+  
+  @Input("nestableList")
+  nestableList: NestableListItem[] = [];
 
   private currentDraggableEvent?: DragEvent;
   private currentDragEffectMsg?: string;
 
   constructor(private snackBarService: MatSnackBar) {}
+
+  onClick(item: NestableListItem) {
+    this.nodeFocused.emit(item);
+  }
 
   onDragStart(event: DragEvent) {
     this.currentDragEffectMsg = '';
@@ -119,6 +95,11 @@ export default class NestedComponent {
       }
 
       list.splice(index, 0, event.data);
+
+      if(event.dropEffect === 'copy')
+        list[index].action = 'move'
     }
+
+    this.treeChanged.emit();
   }
 }

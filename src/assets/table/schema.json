@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "title": "Title",
+      "minLength": 1
+    },
+    "columns": {
+      "type": "array",
+      "title": "Columns",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Column Name"
+          },
+          "type": {
+            "type": "string",
+            "title": "Data Type",
+            "enum": ["string", "integer", "boolean", "date", "float"]
+          }
+        },
+        "required": ["name", "type"]
+      },
+      "minItems": 1
+    }
+  },
+  "required": ["numberOfColumns", "columns"]
+}

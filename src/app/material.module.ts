@@ -7,6 +7,10 @@ import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
 import {NgModule} from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   exports: [
@@ -16,6 +20,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     CdkTreeModule,
     DragDropModule,
     MatExpansionModule,
+    MatToolbarModule,
     // MatAutocompleteModule,
     // MatBadgeModule,
     // MatBottomSheetModule,
@@ -32,10 +37,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
     // MatGridListModule,
     // MatIconModule,
     // MatInputModule,
-    // MatListModule,
+     MatListModule,
     // MatMenuModule,
     // MatNativeDateModule,
-    // MatPaginatorModule,
+    MatPaginatorModule,
     // MatProgressBarModule,
     // MatProgressSpinnerModule,
     // MatRadioModule,
@@ -46,7 +51,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     // MatSlideToggleModule,
     // MatSnackBarModule,
     // MatSortModule,
-    // MatTableModule,
+    MatTableModule,
     // MatTabsModule,
     // MatToolbarModule,
     // MatTooltipModule,

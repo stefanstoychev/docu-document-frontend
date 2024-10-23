@@ -1,8 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { angularMaterialRenderers } from '@jsonforms/angular-material';
-
-import uischemaAsset from '../../assets/uischema.json';
-import schemaAsset from '../../assets/schema.json';
+import { NestableListItem } from '../nested/nested.component';
 
 
 @Component({
@@ -12,9 +10,19 @@ import schemaAsset from '../../assets/schema.json';
 })
 export class FormExampleComponent {
 
-  data = '';
+  @Input("item")
+  item!: NestableListItem;
+
+  @Output() dataChanged = new EventEmitter<NestableListItem>();
+  
+  dataChange($event: any) {
+
+    this.item.templateBlock.data = $event
+    
+    this.dataChanged.emit(this.item);
+  }
+
   renderers = [
     ...angularMaterialRenderers,];
-  schema = schemaAsset;
-  uischema = uischemaAsset;
+
 }
