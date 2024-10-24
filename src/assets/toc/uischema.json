@@ -8,8 +8,8 @@
     },
     {
       "type": "Control",
-      "scope": "#/properties/text",
-      "label": "Text",
+      "scope": "#/properties/title",
+      "label": "Title",
       "options": {
         "multi": true,
         "placeholder": "Enter the text",

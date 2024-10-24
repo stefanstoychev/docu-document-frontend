@@ -16,6 +16,7 @@ import NestedComponent from "./components/nested/nested.component";
 import { ProjectService } from './services/project.service';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { LocalBrowserStorageService } from './services/local-browser-storage.service';
+import { FileSaverModule } from 'ngx-filesaver';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { LocalBrowserStorageService } from './services/local-browser-storage.ser
     AppRoutingModule,
     DragDropModule,
     MaterialModule,
-    NestedComponent
+    NestedComponent,
+    FileSaverModule
 ],
   schemas: [],
   bootstrap: [AppComponent],

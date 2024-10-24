@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import uischemaAsset from '../../assets/uischema.json';
 import schemaAsset from '../../assets/schema.json';
 
+import chapterUischemaAsset from '../../assets/chapter/uischema.json';
+import chapterSchemaAsset from '../../assets/chapter/schema.json';
+
 import textUischemaAsset from '../../assets/text/uischema.json';
 import textSchemaAsset from '../../assets/text/schema.json';
 
@@ -10,6 +13,9 @@ import tableSchemaAsset from '../../assets/table/schema.json';
 
 import groupUischemaAsset from '../../assets/group/uischema.json';
 import groupSchemaAsset from '../../assets/group/schema.json';
+
+import tocUischemaAsset from '../../assets/toc/uischema.json';
+import tocSchemaAsset from '../../assets/toc/schema.json';
 
 import { NestableListItem } from '../models/nestable-list-item';
 
@@ -20,7 +26,6 @@ export class PalletService {
 
   pallet: NestableListItem[] = [
     {
-      content: "Group",
       action: "copy",
       children: [],
       templateBlock:
@@ -32,18 +37,16 @@ export class PalletService {
       }
     },
     {
-      content: 'Chapter',
       action: "copy",
       templateBlock:
       {
         data: { type: "chapter", title: "Chapter" },
-        uischema: textUischemaAsset,
-        schema: textSchemaAsset,
+        uischema: chapterUischemaAsset,
+        schema: chapterSchemaAsset,
         path: "/1"
       }
     },
     {
-      content: 'Simple Text',
       action: "copy",
       templateBlock: {
         data: { type: "text", title: "Text" },
@@ -53,7 +56,6 @@ export class PalletService {
       },
     },
     {
-      content: 'Rich Text',
       action: "copy",
       templateBlock:
       {
@@ -64,7 +66,6 @@ export class PalletService {
       }
     },
     {
-      content: 'Table',
       action: "copy",
       templateBlock:
       {
@@ -74,7 +75,16 @@ export class PalletService {
         path: "/4"
       }
     },
+    {
+      action: "copy",
+      templateBlock:
+      {
+        data: { type: "toc", title: "toc" },
+        uischema: tocUischemaAsset,
+        schema: tocSchemaAsset,
+        path: "/5"
+      }
+    },
   ];
 
-  constructor() { }
 }

@@ -9,9 +9,9 @@
     },
     "text": {
       "type": "string",
-      "title": "Text",
+      "title": "Title",
       "minLength": 1
     }
   },
-  "required": ["title", "description"]
+  "required": ["title"]
 }

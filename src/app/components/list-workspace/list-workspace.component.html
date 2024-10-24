@@ -1,15 +1,30 @@
+
 <div style="width: 100%; height: 100%;">
-    <as-split direction="horizontal">
-      <as-split-area [size]="30">
-        <dnd-nested [nestableList]="pallet"></dnd-nested>
-      </as-split-area>
-      <as-split-area [size]="40">
-        <dnd-nested [nestableList]="workspace" (nodeFocused)="nodeFocused($event)" (treeChanged)="treeChanged()"></dnd-nested>
-      </as-split-area>
-      <as-split-area [size]="30">
-        <div *ngIf="item">
-          <app-form-example [item]="item" (dataChanged)="dataChanged($event)" ></app-form-example>
-        </div>
-      </as-split-area>
-    </as-split>
-  </div>
+  <as-split direction="horizontal">
+    <as-split-area [size]="30">
+      <as-split direction="vertical">
+
+        <as-split-area [size]="70">
+          <dnd-nested [nestableList]="pallet"></dnd-nested>
+        </as-split-area>
+        <as-split-area [size]="30">
+          <button (click)="export()">Export</button>
+          <button (click)="clear()">Clear</button>
+        
+        </as-split-area>
+      </as-split>
+
+    </as-split-area>
+    <as-split-area [size]="40">
+      <dnd-nested [nestableList]="workspace" (nodeFocused)="nodeFocused($event)"
+      (treeChanged)="treeChanged()"></dnd-nested>
+
+    </as-split-area>
+
+    <as-split-area [size]="30">
+      <div *ngIf="item">
+        <app-form-example [item]="item" (dataChanged)="dataChanged($event)"></app-form-example>
+      </div>
+    </as-split-area>
+  </as-split>
+</div>

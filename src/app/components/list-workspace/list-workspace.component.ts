@@ -7,6 +7,7 @@ import { applyOperation, Operation } from 'fast-json-patch';
 import { PalletService } from '../../services/pallet.service';
 import { NestableListItem } from '../../models/nestable-list-item';
 import { LocalBrowserStorageService } from '../../services/local-browser-storage.service';
+import { DocumentExportService } from '../../services/document-export.service';
 
 
 @Component({
@@ -16,6 +17,7 @@ import { LocalBrowserStorageService } from '../../services/local-browser-storage
 })
 export class ListWorkspaceComponent {
 
+
   title = 'Docu Docu';
 
   pallet!: NestableListItem[];
@@ -24,7 +26,7 @@ export class ListWorkspaceComponent {
 
   item!: NestableListItem;
 
-  constructor(private palletService: PalletService, private localStorage: LocalBrowserStorageService) {
+  constructor(private palletService: PalletService, private localStorage: LocalBrowserStorageService, private documentExportService: DocumentExportService) {
 
     this.pallet = this.palletService.pallet;
   }
@@ -39,6 +41,12 @@ export class ListWorkspaceComponent {
   nodeFocused(block: NestableListItem) {
 
     this.item = block;
+  }
+  
+  clear() {
+    this.workspace = [];
+
+    this.localStorage.set("test", JSON.stringify(this.workspace));
   }
 
   treeChanged() {
@@ -73,5 +81,10 @@ export class ListWorkspaceComponent {
     this.workspace = document;
 
     console.debug(document);
+    this.localStorage.set("test", JSON.stringify(this.workspace));
+  }
+
+  export(){
+    this.documentExportService.export(this.workspace)
   }
 }

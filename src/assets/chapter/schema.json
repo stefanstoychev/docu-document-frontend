@@ -7,9 +7,14 @@
       "minLength": 1,
       "readOnly": true
     },
-    "text": {
+    "title": {
       "type": "string",
-      "title": "Text",
+      "title": "Title",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "title": "Description",
       "minLength": 1
     }
   },

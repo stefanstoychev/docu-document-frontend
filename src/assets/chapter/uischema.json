@@ -1,0 +1,28 @@
+{
+  "type": "VerticalLayout",
+  "elements": [
+    {
+      "type": "Control",
+      "scope": "#/properties/type",
+      "label": "Type"
+    },
+    {
+      "type": "Control",
+      "scope": "#/properties/title",
+      "label": "Title",
+      "options": {
+        "placeholder": "Enter the title"
+      }
+    },
+    {
+      "type": "Control",
+      "scope": "#/properties/description",
+      "label": "Description",
+      "options": {
+        "multi": true,
+        "placeholder": "Enter the description",
+        "rows": 5
+      }
+    }
+  ]
+}
