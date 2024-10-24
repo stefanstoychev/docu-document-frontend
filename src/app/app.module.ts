@@ -7,14 +7,14 @@ import { JsonFormsAngularMaterialModule } from '@jsonforms/angular-material';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AppRoutingModule } from './app-routing.module';
-import { FormExampleComponent } from './form-example/form-example.component';
+import { FormExampleComponent } from './components/form-example/form-example.component';
 import { AngularSplitModule } from 'angular-split';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { ListWorkspaceComponent } from './list-workspace/list-workspace.component';
+import { ListWorkspaceComponent } from './components/list-workspace/list-workspace.component';
 import { MaterialModule } from './material.module';
-import NestedComponent from "./nested/nested.component";
+import NestedComponent from "./components/nested/nested.component";
 import { ProjectService } from './services/project.service';
-import { ProjectsComponent } from './projects/projects.component';
+import { ProjectsComponent } from './components/projects/projects.component';
 
 @NgModule({
   declarations: [

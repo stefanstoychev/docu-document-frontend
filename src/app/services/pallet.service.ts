@@ -7,7 +7,7 @@ import textSchemaAsset from '../../assets/text/schema.json';
 
 import tableUischemaAsset from '../../assets/table/uischema.json';
 import tableSchemaAsset from '../../assets/table/schema.json';
-import { NestableListItem } from '../nested/nested.component';
+import { NestableListItem } from '../models/nestable-list-item';
 
 @Injectable({
   providedIn: 'root'

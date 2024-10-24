@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { angularMaterialRenderers } from '@jsonforms/angular-material';
-import { NestableListItem } from '../nested/nested.component';
-
+import { NestableListItem } from '../../models/nestable-list-item';
 
 @Component({
   selector: 'app-form-example',

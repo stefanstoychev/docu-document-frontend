@@ -2,10 +2,10 @@ import { CdkDragDrop, copyArrayItem, moveItemInArray, transferArrayItem } from '
 import { Component, Input } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 
-import { NestableListItem } from '../nested/nested.component';
 import * as jsonpatch from 'fast-json-patch';
 import { applyOperation, Operation } from 'fast-json-patch';
-import { PalletService } from '../services/pallet.service';
+import { PalletService } from '../../services/pallet.service';
+import { NestableListItem } from '../../models/nestable-list-item';
 
 
 @Component({

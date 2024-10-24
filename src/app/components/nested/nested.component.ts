@@ -12,17 +12,7 @@ import {
   DndPlaceholderRefDirective,
   DropEffect,
 } from 'ngx-drag-drop';
-import { TemplateBlock } from '../models/template-block';
-
-export interface NestableListItem {
-  content: string;
-  templateBlock: TemplateBlock,
-  disable?: boolean;
-  action: string;
-  handle?: boolean;
-  customDragImage?: boolean;
-  children?: NestableListItem[];
-}
+import { NestableListItem } from '../../models/nestable-list-item';
 
 @Component({
   selector: 'dnd-nested',
