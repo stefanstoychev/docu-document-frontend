@@ -6,6 +6,7 @@ import * as jsonpatch from 'fast-json-patch';
 import { applyOperation, Operation } from 'fast-json-patch';
 import { PalletService } from '../../services/pallet.service';
 import { NestableListItem } from '../../models/nestable-list-item';
+import { LocalBrowserStorageService } from '../../services/local-browser-storage.service';
 
 
 @Component({
@@ -23,9 +24,16 @@ export class ListWorkspaceComponent {
 
   item!: NestableListItem;
 
-  constructor(private palletService: PalletService) {
+  constructor(private palletService: PalletService, private localStorage: LocalBrowserStorageService) {
 
     this.pallet = this.palletService.pallet;
+  }
+
+  ngOnInit() {
+    let jsonWorkspace = this.localStorage.get("test");
+    
+    if(jsonWorkspace)
+      this.workspace = JSON.parse(jsonWorkspace);
   }
 
   nodeFocused(block: NestableListItem) {
@@ -39,6 +47,8 @@ export class ListWorkspaceComponent {
       currentValue.templateBlock.path = "/"+index;
       this.updatePath("/"+index, currentValue);
     });
+
+    this.localStorage.set("test", JSON.stringify(this.workspace));
   }
 
   updatePath(path: string, item: NestableListItem) {

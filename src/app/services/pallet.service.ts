@@ -7,6 +7,10 @@ import textSchemaAsset from '../../assets/text/schema.json';
 
 import tableUischemaAsset from '../../assets/table/uischema.json';
 import tableSchemaAsset from '../../assets/table/schema.json';
+
+import groupUischemaAsset from '../../assets/group/uischema.json';
+import groupSchemaAsset from '../../assets/group/schema.json';
+
 import { NestableListItem } from '../models/nestable-list-item';
 
 @Injectable({
@@ -21,9 +25,9 @@ export class PalletService {
       children: [],
       templateBlock:
       {
-        data: { type: "group" },
-        uischema: textUischemaAsset,
-        schema: textSchemaAsset,
+        data: { type: "group", title: "Group" },
+        uischema: groupUischemaAsset,
+        schema: groupSchemaAsset,
         path: "/0"
       }
     },
@@ -32,7 +36,7 @@ export class PalletService {
       action: "copy",
       templateBlock:
       {
-        data: { type: "chapter" },
+        data: { type: "chapter", title: "Chapter" },
         uischema: textUischemaAsset,
         schema: textSchemaAsset,
         path: "/1"
@@ -42,7 +46,7 @@ export class PalletService {
       content: 'Simple Text',
       action: "copy",
       templateBlock: {
-        data: { type: "text" },
+        data: { type: "text", title: "Text" },
         uischema: textUischemaAsset,
         schema: textSchemaAsset,
         path: "/2"
@@ -53,7 +57,7 @@ export class PalletService {
       action: "copy",
       templateBlock:
       {
-        data: { type: "rich-text" },
+        data: { type: "rich-text", title: "Rich text" },
         uischema: uischemaAsset,
         schema: schemaAsset,
         path: "/3"
@@ -64,7 +68,7 @@ export class PalletService {
       action: "copy",
       templateBlock:
       {
-        data: { type: "table" },
+        data: { type: "table", title: "Table" },
         uischema: tableUischemaAsset,
         schema: tableSchemaAsset,
         path: "/4"

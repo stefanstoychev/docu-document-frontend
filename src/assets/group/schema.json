@@ -12,9 +12,9 @@
       "title": "Title",
       "minLength": 1
     },
-    "text": {
+    "description": {
       "type": "string",
-      "title": "Text",
+      "title": "Description",
       "minLength": 1
     }
   },

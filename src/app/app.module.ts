@@ -15,13 +15,14 @@ import { MaterialModule } from './material.module';
 import NestedComponent from "./components/nested/nested.component";
 import { ProjectService } from './services/project.service';
 import { ProjectsComponent } from './components/projects/projects.component';
+import { LocalBrowserStorageService } from './services/local-browser-storage.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormExampleComponent,
     ListWorkspaceComponent,
-    ProjectsComponent
+    ProjectsComponent,
   ],
   imports: [
     AngularSplitModule,
