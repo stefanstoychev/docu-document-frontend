@@ -8,6 +8,7 @@ import { PalletService } from '../../services/pallet.service';
 import { NestableListItem } from '../../models/nestable-list-item';
 import { LocalBrowserStorageService } from '../../services/local-browser-storage.service';
 import { DocumentExportService } from '../../services/document-export.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -26,13 +27,21 @@ export class ListWorkspaceComponent {
 
   item!: NestableListItem;
 
-  constructor(private palletService: PalletService, private localStorage: LocalBrowserStorageService, private documentExportService: DocumentExportService) {
+  constructor(private palletService: PalletService, 
+    private localStorage: LocalBrowserStorageService,
+    private route: ActivatedRoute,
+    private router: Router, 
+    private documentExportService: DocumentExportService) {
 
     this.pallet = this.palletService.pallet;
   }
 
+  workspaceKey() {
+    return "workspace/" + this.route.snapshot.paramMap.get("id");
+  }
+
   ngOnInit() {
-    let jsonWorkspace = this.localStorage.get("test");
+    let jsonWorkspace = this.localStorage.get(this.workspaceKey());
     
     if(jsonWorkspace)
       this.workspace = JSON.parse(jsonWorkspace);
@@ -46,7 +55,7 @@ export class ListWorkspaceComponent {
   clear() {
     this.workspace = [];
 
-    this.localStorage.set("test", JSON.stringify(this.workspace));
+    this.localStorage.set(this.workspaceKey(), JSON.stringify(this.workspace));
   }
 
   treeChanged() {
@@ -56,7 +65,7 @@ export class ListWorkspaceComponent {
       this.updatePath("/"+index, currentValue);
     });
 
-    this.localStorage.set("test", JSON.stringify(this.workspace));
+    this.localStorage.set(this.workspaceKey(), JSON.stringify(this.workspace));
   }
 
   updatePath(path: string, item: NestableListItem) {
@@ -81,7 +90,7 @@ export class ListWorkspaceComponent {
     this.workspace = document;
 
     console.debug(document);
-    this.localStorage.set("test", JSON.stringify(this.workspace));
+    this.localStorage.set(this.workspaceKey(), JSON.stringify(this.workspace));
   }
 
   export(){

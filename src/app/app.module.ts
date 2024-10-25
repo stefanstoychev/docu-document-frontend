@@ -17,6 +17,7 @@ import { ProjectService } from './services/project.service';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { LocalBrowserStorageService } from './services/local-browser-storage.service';
 import { FileSaverModule } from 'ngx-filesaver';
+import { MasterdataComponent } from './components/masterdata/masterdata.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FileSaverModule } from 'ngx-filesaver';
     FormExampleComponent,
     ListWorkspaceComponent,
     ProjectsComponent,
+    MasterdataComponent
   ],
   imports: [
     AngularSplitModule,

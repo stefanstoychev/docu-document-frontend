@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ProjectModel } from '../models/project';
 
 @Injectable({
   providedIn: 'root'
@@ -7,10 +8,11 @@ export class ProjectService {
 
   constructor() { }
 
-  projects() : Array<string> {
+  projects() : ProjectModel[] {
     return [
-      "project 1",
-      "project 2",
+      { id: "1", name: "project 1", },
+      { id: "2", name: "project 2", },
+      { id: "3", name: "project 3", },
     ];
   }
 }
