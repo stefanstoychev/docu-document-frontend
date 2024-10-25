@@ -2,21 +2,54 @@
   "type": "VerticalLayout",
   "elements": [
     {
-      "type": "Control",
-      "scope": "#/properties/title",
-      "label": "Title",
-      "options": {
-        "placeholder": "Enter the title"
-      }
+      "type": "HorizontalLayout",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/name"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/birthDate"
+        }
+      ]
     },
     {
-      "type": "Control",
-      "scope": "#/properties/columns",
-      "label": "Columns",
-      "options": {
-        "addable": true,
-        "removable": true
-      }
+      "type": "Label",
+      "text": "Additional Information"
+    },
+    {
+      "type": "HorizontalLayout",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/personalData/properties/height"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/nationality"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/occupation",
+          "options": {
+            "suggestion": [
+              "Accountant",
+              "Engineer",
+              "Freelancer",
+              "Journalism",
+              "Physician",
+              "Student",
+              "Teacher",
+              "Other"
+            ]
+          }
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/personalData/properties/drivingSkill"
+        }
+      ]
     }
   ]
 }

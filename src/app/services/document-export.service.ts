@@ -1,7 +1,30 @@
 import { Injectable } from '@angular/core';
-import { Paragraph, Document, TextRun, Packer, HeadingLevel, FileChild, Table, TableRow, TableCell, VerticalAlign, TextDirection, WidthType, TableOfContents } from 'docx';
+import { Paragraph, Document, TextRun, Packer, HeadingLevel, FileChild, Table, TableRow, TableCell, VerticalAlign, TextDirection, WidthType, TableOfContents, IPatch, PatchType, patchDocument } from 'docx';
 import { FileSaverService } from 'ngx-filesaver';
 import { NestableListItem } from '../models/nestable-list-item';
+
+
+export const font = "Trebuchet MS";
+export const getPatches = (fields: { [key: string]: string }) => {
+    const patches: { [key: string]: IPatch } = {};
+
+    for (const field in fields) {
+        patches[field] = {
+            type: PatchType.PARAGRAPH,
+            children: [new TextRun({ text: fields[field], font })],
+        };
+    }
+
+    return patches;
+};
+
+const patches = getPatches({
+    name: "Mr",
+    table_heading_1: "John",
+    item_1: "Doe",
+    paragraph_replace: "Lorem ipsum paragraph",
+});
+
 @Injectable({
   providedIn: 'root'
 })
@@ -75,13 +98,22 @@ export class DocumentExportService {
       ],
     });
 
+
+
     Packer.toBlob(doc).then(blob => {
-      console.log(blob);
-      this.browserSaveAs(blob, "example.docx");
-      console.log("Document created successfully");
+      
+      patchDocument({
+        outputType: "blob",
+        data: blob,
+        patches,
+      }).then((doc) => {
+        this.browserSaveAs(doc, "example.docx");
+        console.log("Document created successfully");
+      });
     });
   }
 
+  
   browserSaveAs(blob: any, filename: string) {
     try {
       this.fileSaver.save(blob, filename);

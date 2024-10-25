@@ -1,31 +1,45 @@
 {
   "type": "object",
   "properties": {
-    "title": {
+    "name": {
       "type": "string",
-      "title": "Title",
-      "minLength": 1
+      "minLength": 3,
+      "description": "Please enter your name"
     },
-    "columns": {
-      "type": "array",
-      "title": "Columns",
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "title": "Column Name"
-          },
-          "type": {
-            "type": "string",
-            "title": "Data Type",
-            "enum": ["string", "integer", "boolean", "date", "float"]
-          }
+    "birthDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "nationality": {
+      "type": "string",
+      "enum": [
+        "DE",
+        "IT",
+        "JP",
+        "US",
+        "RU",
+        "Other"
+      ]
+    },
+    "personalData": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "number"
         },
-        "required": ["name", "type"]
+        "drivingSkill": {
+          "type": "number",
+          "maximum": 10,
+          "minimum": 1,
+          "default": 7
+        }
       },
-      "minItems": 1
+      "required": [
+        "height"
+      ]
+    },
+    "occupation": {
+      "type": "string"
     }
-  },
-  "required": ["numberOfColumns", "columns"]
+  }
 }
