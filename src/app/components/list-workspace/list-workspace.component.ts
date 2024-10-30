@@ -9,7 +9,13 @@ import { NestableListItem } from '../../models/nestable-list-item';
 import { LocalBrowserStorageService } from '../../services/local-browser-storage.service';
 import { DocumentExportService } from '../../services/document-export.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { flatten } from 'flat'
+import { angularMaterialRenderers } from '@jsonforms/angular-material';
 
+import variableUischemaAsset from '../../../assets/variables/uischema.json';
+import variableSchemaAsset from '../../../assets/variables/schema.json';
+import { KeyValuePair } from '../../models/key-value-pair';
+import { keyframes } from '@angular/animations';
 
 @Component({
   selector: 'app-list-workspace',
@@ -25,7 +31,15 @@ export class ListWorkspaceComponent {
 
   workspace: NestableListItem[] = [];
 
+  variables!: any
+
   item!: NestableListItem;
+
+  variablesSchema = variableSchemaAsset;
+  variablesUiSchema = variableUischemaAsset;
+
+  renderers = [
+    ...angularMaterialRenderers,];
 
   constructor(private palletService: PalletService, 
     private localStorage: LocalBrowserStorageService,
@@ -40,11 +54,36 @@ export class ListWorkspaceComponent {
     return "workspace/" + this.route.snapshot.paramMap.get("id");
   }
 
+  masterdataKey() {
+    return "masterdata/" + this.route.snapshot.paramMap.get("id");
+  }
+
   ngOnInit() {
     let jsonWorkspace = this.localStorage.get(this.workspaceKey());
     
     if(jsonWorkspace)
       this.workspace = JSON.parse(jsonWorkspace);
+
+    let jsonMasterdata = this.localStorage.get(this.masterdataKey());
+    
+    if (jsonMasterdata) {
+      let masterdata = JSON.parse(jsonMasterdata);
+
+      let masterdataData = masterdata.templateBlock.data;
+      let flatMasterdata : object = flatten(masterdataData, {delimiter: ''});
+      
+      let vars : KeyValuePair[]  = [];
+
+      new Map(Object.entries(flatMasterdata)).forEach((value, key) => {
+        if(key){
+          vars.push({"key" : key, "value" : value});
+        }
+      })
+
+      this.variables = {"variables" : vars };
+
+      console.log(this.variables);
+    }
   }
 
   nodeFocused(block: NestableListItem) {
@@ -94,6 +133,6 @@ export class ListWorkspaceComponent {
   }
 
   export(){
-    this.documentExportService.export(this.workspace)
+    this.documentExportService.export(this.workspace, this.variables.variables)
   }
 }

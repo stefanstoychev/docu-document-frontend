@@ -37,6 +37,7 @@
     "docx": "^9.0.2",
     "fast-json-patch": "^3.1.1",
     "file-saver": "^2.0.5",
+    "flat": "^6.0.1",
     "ngx-drag-drop": "^18.0.2",
     "ngx-filesaver": "^18.0.0",
     "rxjs": "~7.8.0",

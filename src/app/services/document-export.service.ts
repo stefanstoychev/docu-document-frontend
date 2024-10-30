@@ -2,28 +2,10 @@ import { Injectable } from '@angular/core';
 import { Paragraph, Document, TextRun, Packer, HeadingLevel, FileChild, Table, TableRow, TableCell, VerticalAlign, TextDirection, WidthType, TableOfContents, IPatch, PatchType, patchDocument } from 'docx';
 import { FileSaverService } from 'ngx-filesaver';
 import { NestableListItem } from '../models/nestable-list-item';
+import { KeyValuePair } from '../models/key-value-pair';
 
 
 export const font = "Trebuchet MS";
-export const getPatches = (fields: { [key: string]: string }) => {
-    const patches: { [key: string]: IPatch } = {};
-
-    for (const field in fields) {
-        patches[field] = {
-            type: PatchType.PARAGRAPH,
-            children: [new TextRun({ text: fields[field], font })],
-        };
-    }
-
-    return patches;
-};
-
-const patches = getPatches({
-    name: "Mr",
-    table_heading_1: "John",
-    item_1: "Doe",
-    paragraph_replace: "Lorem ipsum paragraph",
-});
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +14,21 @@ export class DocumentExportService {
 
   constructor(private fileSaver: FileSaverService) { }
 
-  export(list: NestableListItem[]) {
+  getPatches(fields: KeyValuePair[]) {
+    const patches: { [key: string]: IPatch } = {};
+
+    fields.forEach(field => {
+      if (field.key)
+        patches[field.key] = {
+          type: PatchType.PARAGRAPH,
+          children: [new TextRun({ text: field.value?.toString(), font })],
+        };
+    });
+  
+    return patches;
+  }
+
+  export(list: NestableListItem[], variables: KeyValuePair[]) {
 
     let children: FileChild[] = [];
 
@@ -82,8 +78,6 @@ export class DocumentExportService {
 
     });
 
-
-
     // Documents contain sections, you can have multiple sections per document, go here to learn more about sections
     // This simple example will only contain one section
     const doc = new Document({
@@ -99,6 +93,7 @@ export class DocumentExportService {
     });
 
 
+    const patches = this.getPatches(variables);
 
     Packer.toBlob(doc).then(blob => {
       
