@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import {AuthConfig, OAuthService} from 'angular-oauth2-oidc';
 import {filter} from 'rxjs';
+import {buildGetOpenDialogAriaText} from '@mui/x-date-pickers/locales/utils/getPickersLocalization';
+
+//https://medium.com/@stefannovak96/signing-in-with-google-with-keycloak-bf5166e93d1e
+//https://console.cloud.google.com/apis/credentials?project=doku-document
 
 export const authCodeFlowConfig: AuthConfig = {
   // Url of the Identity Provider
@@ -53,7 +57,7 @@ export class AppComponent {
   get userName(): string {
     const claims = this.oauthService.getIdentityClaims();
     if (!claims) return "";
-    return claims['given_name'];
+    return claims['given_name'] + " " + claims['family_name'];
   }
 
   get idToken(): string {
@@ -67,4 +71,10 @@ export class AppComponent {
   refresh() {
     this.oauthService.refreshToken();
   }
+
+  logout() {
+    this.oauthService.logOut();
+  }
+
+  protected readonly buildGetOpenDialogAriaText = buildGetOpenDialogAriaText;
 }

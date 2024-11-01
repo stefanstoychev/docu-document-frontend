@@ -1,18 +1,23 @@
-<mat-toolbar>{{ title }}</mat-toolbar>
+<mat-toolbar>{{ title }}
+<!--  <h2>User</h2>-->
+  <p>User {{ userName }}</p>
 
-<div cdkDropListGroup>
-  <h2>User</h2>
-  <p>{{ userName }}</p>
+<!--  <h2>Id-Token</h2>-->
+<!--  <p>{{ idToken }}</p>-->
 
-  <h2>Id-Token</h2>
-  <p>{{ idToken }}</p>
-
-  <h2>Access Token</h2>
-  <p>{{ accessToken }}</p>
+<!--  <h2>Access Token</h2>-->
+<!--  <p>{{ accessToken }}</p>-->
 
   <p>
     <button (click)="refresh()">Refresh</button>
   </p>
+  <p>
+    <button (click)="logout()">Logout</button>
+  </p>
+</mat-toolbar>
+
+<div cdkDropListGroup>
+
 <div style="width: 100%; height: 100%;">
   <router-outlet />
 </div>
