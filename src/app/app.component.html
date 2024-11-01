@@ -1,6 +1,18 @@
 <mat-toolbar>{{ title }}</mat-toolbar>
 
 <div cdkDropListGroup>
+  <h2>User</h2>
+  <p>{{ userName }}</p>
+
+  <h2>Id-Token</h2>
+  <p>{{ idToken }}</p>
+
+  <h2>Access Token</h2>
+  <p>{{ accessToken }}</p>
+
+  <p>
+    <button (click)="refresh()">Refresh</button>
+  </p>
 <div style="width: 100%; height: 100%;">
   <router-outlet />
 </div>

@@ -18,6 +18,9 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { LocalBrowserStorageService } from './services/local-browser-storage.service';
 import { FileSaverModule } from 'ngx-filesaver';
 import { MasterdataComponent } from './components/masterdata/masterdata.component';
+import { HttpClientModule } from '@angular/common/http';
+import { OAuthModule } from 'angular-oauth2-oidc';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +41,9 @@ import { MasterdataComponent } from './components/masterdata/masterdata.componen
     DragDropModule,
     MaterialModule,
     NestedComponent,
-    FileSaverModule
+    FileSaverModule,
+    HttpClientModule,
+    OAuthModule.forRoot()
 ],
   schemas: [],
   bootstrap: [AppComponent],
@@ -48,6 +53,8 @@ import { MasterdataComponent } from './components/masterdata/masterdata.componen
   exports: []
 })
 export class AppModule {
+
+
 }
 export { AppComponent };
 
