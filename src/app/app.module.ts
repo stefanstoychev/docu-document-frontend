@@ -20,6 +20,7 @@ import { FileSaverModule } from 'ngx-filesaver';
 import { MasterdataComponent } from './components/masterdata/masterdata.component';
 import { HttpClientModule } from '@angular/common/http';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import {APP_BASE_HREF} from '@angular/common';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
   schemas: [],
   bootstrap: [AppComponent],
   providers: [
+    { provide: APP_BASE_HREF, useValue: '/test'}
     //provideAnimationsAsync()
   ],
   exports: []
